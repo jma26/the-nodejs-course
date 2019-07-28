@@ -1,0 +1,5 @@
+Hello! My name is Jesse and I am learning NodeJS. NodeJS is a really good server-side framework for making I/O operational-related applications. Very beneficial!
+
+Anyways, hope you get this printed in file
+
+Bye!
