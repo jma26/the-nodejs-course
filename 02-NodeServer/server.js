@@ -1,13 +1,27 @@
 // CommonJS Module
 var http = require('http');
+var fs = require('fs');
 var port = 5000;
 
 http.createServer(callback).listen(port);
 
 function callback(request, response) {
-  response.writeHead(200);
-  response.write('<h1>This is a direct message from the url: ' + request.url + '</h1>\n');
-  response.end();
+  if (request.url === '/about') {
+    response.writeHead(200, {'Content-Type': 'text/html'});
+    fs.readFile('about.html', function(err, data) {
+      response.end(data);
+    });
+  } else if (request.url === '/jessema') {
+    response.writeHead(200, {'Content-Type': 'text/html'});
+    fs.readFile('awesome.html', function(err, data) {
+      response.end(data);
+    });
+  } else {
+    response.writeHead(400, {'Content-Type': 'text/html'});
+    fs.readFile('404.html', function(err, data) {
+      response.end(data);
+    })
+  }
 }
 
 console.log('Server running at http://localhost:' + port);
