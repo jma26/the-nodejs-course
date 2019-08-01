@@ -8,18 +8,20 @@ http.createServer(callback).listen(port);
 function callback(request, response) {
   if (request.url === '/') {
     response.writeHead(200, {'Content-Type': 'text/html'});
-    fs.readFile(__dirname + '/views/helloworld.jade', 'utf-8', function(err, source) {
-      // Other compilation is .compileFile('path to file')
-      // This compiles a template and returns the result to response object
-      var template = jade.compile(source);
-      var output = template({name: 'Jesse Ma'});
-      response.write(output);
-      response.end();
+    // fs.readFile() is not necessary. Jade API has compileFile() that compiles directly form a file
+    var data = {
+      name: 'Jesse Ma'
+    };
 
-      if (err) {
-        response.end(err);
-      }
-    })
+    var template = jade.compileFile(__dirname + '/views/index.jade', {
+      fileName: __dirname + '/views/index.jade'
+    });
+
+    var html = template(data);
+
+    // Output jade template to response object
+    response.write(html);
+    response.end();
   }
 }
 
