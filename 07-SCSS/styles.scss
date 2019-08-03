@@ -1,3 +1,13 @@
-.Header__headline {
-  font-size: 20px;
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.Header {
+  background-color: yellow;
+  padding: 16px;
+  .Header__headline {
+    font-size: 30px;
+    text-align: center;
+  }
 }
