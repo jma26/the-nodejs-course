@@ -3,11 +3,20 @@
   padding: 0px;
 }
 
+// Variables
+$header_color: yellow;
+$font_size: 12px;
+$font_scale: 1.5;
+
+
 .Header {
-  background-color: yellow;
+  background-color: $header_color;
   padding: 16px;
   .Header__headline {
-    font-size: 30px;
+    font-size: $font_size * $font_scale * 2;
     text-align: center;
+  }
+  .Header__subheadline {
+    font-size: $font_size * $font_scale;
   }
 }
