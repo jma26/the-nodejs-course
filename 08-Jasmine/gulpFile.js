@@ -8,3 +8,8 @@ gulp.task('jasmine', function () {
       reporter: new Reporter()
     }));
   });
+
+gulp.task('default', gulp.series('jasmine', function(done) {
+  gulp.watch('js/*.js', gulp.series('jasmine'));
+  done();
+}))
