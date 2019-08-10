@@ -6,6 +6,12 @@ var app = express();
 
 http.createServer(app).listen(port);
 
+// Custom Middleware to use with next()
+app.use(function(request, response, next) {
+  console.log('Current url you are on:', request.url);
+  next();
+});
+
 app.get('/', function(request, response) {
   response.writeHead(200);
   response.write('Hello from 11-MiddleWare with express');
