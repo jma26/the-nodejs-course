@@ -4,6 +4,7 @@ var http = require('http');
 var bodyParser = require('body-parser');
 var config = require('./config');
 var port = config.port;
+var axios = require('axios');
 
 var app = express();
 
@@ -33,6 +34,17 @@ app.get('/', function(request, response) {
   response.write(html);
   response.end();
 });
+
+app.get('/articles', function(request, response) {
+  var url = 'http://simple-api.herokuapp.com/api/v1/articles';
+  axios.get(url)
+    .then(function(data) {
+      response.send(data.data);
+    })
+    .catch(function(error) {
+      response.send(error);
+    })
+})
 
 app.post('/calculate', function(request, response) {
   var number_1 = request.body.number1;
