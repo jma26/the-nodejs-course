@@ -44,7 +44,28 @@ app.get('/articles', function(request, response) {
     .catch(function(error) {
       response.send(error);
     })
-})
+});
+
+app.post('/articles', function(request, response) {
+  var url = 'http://simple-api.herokuapp.com/api/v1/articles';
+  var title = request.body.title;
+  var intro = request.body.intro;
+  var content = request.body.content;
+  var author = request.body.author;
+  axios.post(url, {
+    title: title,
+    intro: intro,
+    content: content,
+    author_id: author
+  })
+  .then(function(data) {
+    console.log(data.data.status);
+    response.send('<h1>Your new posting was ' + data.data.status + ' </h1>');
+  })
+  .catch(function(error) {
+    response.send(error);
+  })
+});
 
 app.post('/calculate', function(request, response) {
   var number_1 = request.body.number1;

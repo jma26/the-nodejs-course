@@ -16,3 +16,10 @@ html(lang="en")
         input(name='number1')
         input(name='number2')
         button Submit
+    block form
+      form(action='/articles' method ='post')
+        input(name='title' placeholder='Title...')
+        input(name='intro' placeholder='Intro...')
+        input(name='content' placeholder="Content...")
+        input(name='author' placeholder="Author ID...")
+        button Submit
