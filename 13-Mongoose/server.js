@@ -1,4 +1,5 @@
 var express = require('express');
+var mongoose = require('mongoose');
 var http = require('http');
 var bodyParser = require('body-parser');
 var config = require('./config');
@@ -9,6 +10,14 @@ var app = express();
 
 // Mongoose Schemas
 var person = require('./models/person.js');
+
+// Mongo connection
+mongoose.connect('mongodb://localhost/database-name');
+var db = mongoose.connection;
+db.on('error', function () {
+  console.log('Unable to connect to database');
+  throw new Error('Unable to connect to database');
+});
 
 // Support parsing of application/json type post data
 app.use(bodyParser.json());
