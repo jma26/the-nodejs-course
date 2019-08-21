@@ -9,7 +9,7 @@ var axios = require('axios');
 var app = express();
 
 // Mongoose Schemas
-var person = require('./models/person.js');
+var Person = require('./models/person.js');
 
 // Mongo connection
 mongoose.connect('mongodb://localhost/database-name');
@@ -30,7 +30,13 @@ app.use(bodyParser.urlencoded({
 http.createServer(app).listen(port);
 
 app.get('/', function(request, response) {
-  console.log(person);
+  console.log(Person);
+});
+
+app.get('/people', function(request, response, next) {
+  Person.find({}, function(error, data) {
+    response.json(data);
+  });
 });
 
 console.log('Server running at http://localhost:' + port);
