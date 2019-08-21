@@ -39,4 +39,11 @@ app.get('/people', function(request, response, next) {
   });
 });
 
+app.get('/people/:id', function(request, response, next) {
+  var id = request.params.id;
+  Person.findById(id, function(error, data) {
+    response.json(data);
+  });
+});
+
 console.log('Server running at http://localhost:' + port);
